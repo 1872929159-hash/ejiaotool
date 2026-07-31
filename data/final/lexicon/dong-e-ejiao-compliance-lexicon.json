@@ -1,0 +1,3125 @@
+{
+  "meta": {
+    "project": "东阿阿胶京东营销合规词库",
+    "version": "1.0.0",
+    "created_at": "2026-07-30T00:00:00Z",
+    "last_updated": "2026-07-30T00:00:00Z",
+    "schema_version": "1.0.0",
+    "description": "针对东阿阿胶京东官方旗舰店营销场景的违禁词/敏感词/平台规则库，核心特性为product_type_rules实现同词不同产品类型差异化风险判定",
+    "product_types": {
+      "tcm_herb": "中药饮片/药材（阿胶块、阿胶珠等，按药典管理）",
+      "health_food": "保健食品（蓝帽子，批准功能：增强免疫力、改善营养性贫血）",
+      "regular_food": "普通食品（阿胶糕、阿胶枣、阿胶粉等，不得宣称任何功效）",
+      "otc_drug": "OTC药品（复方阿胶浆等，按说明书管理）"
+    },
+    "risk_levels": {
+      "L0": "允许（该产品类型下可使用，需确保符合具体法规要求）",
+      "L1": "拦截级（禁止使用，命中即违规，必须修改）",
+      "L2": "预警级（高风险，需提供资质/证据佐证，或需人工审核确认）",
+      "L3": "提醒级（存在风险，建议优化表述，非强制拦截）"
+    },
+    "categories": {
+      "ADV": "广告法极限词（全产品类型禁止）",
+      "EFF": "功效宣称分级词（按产品类型差异化判定，核心模块）",
+      "FMD": "食品药品界限词（防止普通食品越界使用药品/医疗表述）",
+      "PLT": "京东平台规则词（标签滥用/导流/营销/数据/价格/资质违规）",
+      "EJ": "阿胶行业特有风险词（正宗道地/历史传承/品质对比/品质宣称）"
+    },
+    "total_count": 67
+  },
+  "entries": [
+    {
+      "id": "ADV-ABS-00001",
+      "word": "最正宗",
+      "pinyin": "zuizhengzong",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-QUALITY",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用'最'字构成绝对化品质表述，违反《广告法》第九条第(三)项。阿胶产品常见误用场景：宣称'最正宗的阿胶'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'国家级'、'最高级'、'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "中药饮片同样禁止"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品同样禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品同样禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "OTC药品同样禁止"
+        }
+      },
+      "variants": [
+        "最道地",
+        "最纯正",
+        "最优质"
+      ],
+      "compliant_alternatives": [
+        "道地阿胶",
+        "品质阿胶",
+        "正宗阿胶（需有道地药材证明）"
+      ],
+      "tags": [
+        "绝对化用语",
+        "品质类",
+        "阿胶高频误用"
+      ],
+      "source": {
+        "type": "legal",
+        "name": "广告法第九条+市场监管局禁用词清单",
+        "collected_date": "2026-07-30"
+      }
+    },
+    {
+      "id": "ADV-ABS-00002",
+      "word": "最便宜",
+      "pinyin": "zuipianyi",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-PRICE",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用'最'字构成绝对化价格表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "最低价",
+        "全网最低",
+        "史上最低价",
+        "全网最便宜"
+      ],
+      "compliant_alternatives": [
+        "价格实惠",
+        "性价比高",
+        "超值优选"
+      ],
+      "tags": [
+        "绝对化用语",
+        "价格类"
+      ]
+    },
+    {
+      "id": "ADV-ABS-00003",
+      "word": "最好",
+      "pinyin": "zuihao",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-QUALITY",
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "使用'最'字构成绝对化品质表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "最佳",
+        "最优",
+        "最强"
+      ],
+      "compliant_alternatives": [
+        "优质",
+        "精选",
+        "优选"
+      ],
+      "tags": [
+        "绝对化用语",
+        "品质类"
+      ]
+    },
+    {
+      "id": "ADV-ABS-00004",
+      "word": "最安全",
+      "pinyin": "zuianquan",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-SAFETY",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用'最'字构成绝对化安全表述。阿胶产品常见误用场景：宣称'最安全的滋补品'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "最无毒副作用",
+        "最无副作用"
+      ],
+      "compliant_alternatives": [
+        "品质安全",
+        "严格质检"
+      ],
+      "tags": [
+        "绝对化用语",
+        "安全类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-ABS-00005",
+      "word": "最有效",
+      "pinyin": "zhiyouxiao",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-EFFECT",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用'最'字构成绝对化功效表述。阿胶产品常见误用场景：宣称'最有效的补血品'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "效果最好",
+        "最见效"
+      ],
+      "compliant_alternatives": [
+        "品质保证"
+      ],
+      "tags": [
+        "绝对化用语",
+        "功效类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-ABS-00006",
+      "word": "100%纯正",
+      "pinyin": "100chunzheng",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-QUALITY",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用绝对化比例表述，违反广告法。阿胶产品常见误用：'100%纯正阿胶'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "100%纯阿胶",
+        "100%纯",
+        "百分百纯正"
+      ],
+      "compliant_alternatives": [
+        "纯正阿胶",
+        "品质阿胶"
+      ],
+      "tags": [
+        "绝对化用语",
+        "品质类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-ABS-00007",
+      "word": "100%有效",
+      "pinyin": "100youxiao",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ABS",
+      "category_l3": "ADV-ABS-EFFECT",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "使用绝对化功效保证表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "百分百有效",
+        "100%见效"
+      ],
+      "compliant_alternatives": [
+        "品质保证"
+      ],
+      "tags": [
+        "绝对化用语",
+        "功效类"
+      ]
+    },
+    {
+      "id": "ADV-EXT-00001",
+      "word": "顶级",
+      "pinyin": "dingji",
+      "category_l1": "ADV",
+      "category_l2": "ADV-EXT",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "极限词语，违反广告法",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "极品",
+        "至尊",
+        "极致"
+      ],
+      "compliant_alternatives": [
+        "优质",
+        "高级",
+        "精选"
+      ],
+      "tags": [
+        "极限词"
+      ]
+    },
+    {
+      "id": "ADV-EXT-00002",
+      "word": "巅峰",
+      "pinyin": "dianfeng",
+      "category_l1": "ADV",
+      "category_l2": "ADV-EXT",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "极限词语。阿胶产品常见误用：'阿胶工艺的巅峰之作'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "极致工艺",
+        "巅峰之作"
+      ],
+      "compliant_alternatives": [
+        "精工制造",
+        "传统工艺"
+      ],
+      "tags": [
+        "极限词",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-EXT-00003",
+      "word": "空前绝后",
+      "pinyin": "kongqianjuehou",
+      "category_l1": "ADV",
+      "category_l2": "ADV-EXT",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "极限词语",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "无与伦比",
+        "独一无二",
+        "绝无仅有"
+      ],
+      "compliant_alternatives": [
+        "独具特色",
+        "品质卓越"
+      ],
+      "tags": [
+        "极限词"
+      ]
+    },
+    {
+      "id": "ADV-EXC-00001",
+      "word": "独家配方",
+      "pinyin": "dujiapeifang",
+      "category_l1": "ADV",
+      "category_l2": "ADV-EXC",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "独家类用语，需提供独家配方证明。阿胶产品常见误用：宣称'独家秘方'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需提供独家配方证明"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "需提供独家配方证明"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "需提供独家配方证明"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "需提供独家配方证明"
+        }
+      },
+      "variants": [
+        "独家秘方",
+        "独创工艺",
+        "独家研发"
+      ],
+      "compliant_alternatives": [
+        "传统配方",
+        "经典工艺"
+      ],
+      "tags": [
+        "独家类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-EXC-00002",
+      "word": "首创",
+      "pinyin": "shouchuang",
+      "category_l1": "ADV",
+      "category_l2": "ADV-EXC",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "独家类用语，需提供首创证明",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "首创工艺",
+        "首创技术"
+      ],
+      "compliant_alternatives": [
+        "传统工艺",
+        "传承工艺"
+      ],
+      "tags": [
+        "独家类"
+      ]
+    },
+    {
+      "id": "ADV-AUTH-00001",
+      "word": "特供",
+      "pinyin": "tegong",
+      "category_l1": "ADV",
+      "category_l2": "ADV-AUTH",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "权威类用语，国家明令禁止使用'特供''专供'标识",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(二)项",
+          "content": "广告不得使用或变相使用国家机关、国家机关工作人员的名义或者形象",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "专供",
+        "国宴特供",
+        "钓鱼台特供"
+      ],
+      "compliant_alternatives": [],
+      "tags": [
+        "权威类"
+      ]
+    },
+    {
+      "id": "ADV-AUTH-00002",
+      "word": "专家推荐",
+      "pinyin": "zhuanjiatuijian",
+      "category_l1": "ADV",
+      "category_l2": "ADV-AUTH",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "权威类用语，需提供专家推荐的真实性和资质证明",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(二)项",
+          "content": "广告不得使用或变相使用国家机关、国家机关工作人员的名义或者形象",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需提供专家资质和推荐真实性证明"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品广告不得含有推荐语"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "食品广告不得含有推荐语"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "药品广告不得含有专家推荐"
+        }
+      },
+      "variants": [
+        "名医推荐",
+        "中医专家推荐",
+        "权威专家推荐"
+      ],
+      "compliant_alternatives": [],
+      "tags": [
+        "权威类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-AUTH-00003",
+      "word": "驰名商标",
+      "pinyin": "chimingbiaobiao",
+      "category_l1": "ADV",
+      "category_l2": "ADV-AUTH",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "权威类用语，不得在广告宣传中使用'驰名商标'字样",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国商标法",
+          "article": "第十四条第五款",
+          "content": "生产、经营者不得将'驰名商标'字样用于商品、商品包装或者容器上，或者用于广告宣传、展览以及其他商业活动中",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "中国驰名商标"
+      ],
+      "compliant_alternatives": [
+        "知名品牌",
+        "信誉品牌"
+      ],
+      "tags": [
+        "权威类"
+      ]
+    },
+    {
+      "id": "ADV-BRN-00001",
+      "word": "第一品牌",
+      "pinyin": "diyipinpai",
+      "category_l1": "ADV",
+      "category_l2": "ADV-BRN",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "品牌类绝对化用语。阿胶行业常见误用：'阿胶第一品牌'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "行业第一品牌",
+        "阿胶第一品牌",
+        "中国第一品牌"
+      ],
+      "compliant_alternatives": [
+        "知名品牌",
+        "信赖品牌"
+      ],
+      "tags": [
+        "品牌类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-BRN-00002",
+      "word": "王牌",
+      "pinyin": "wangpai",
+      "category_l1": "ADV",
+      "category_l2": "ADV-BRN",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "品牌类用语，暗示绝对优势地位",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "王牌产品",
+        "王牌阿胶"
+      ],
+      "compliant_alternatives": [
+        "明星产品",
+        "热销产品"
+      ],
+      "tags": [
+        "品牌类"
+      ]
+    },
+    {
+      "id": "ADV-LVL-00001",
+      "word": "国家级",
+      "pinyin": "guojiajia",
+      "category_l1": "ADV",
+      "category_l2": "ADV-LVL",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "级别类绝对化用语",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'国家级'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "国家特级",
+        "国家一级"
+      ],
+      "compliant_alternatives": [],
+      "tags": [
+        "级别类"
+      ]
+    },
+    {
+      "id": "ADV-ONE-00001",
+      "word": "唯一",
+      "pinyin": "weiyi",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ONE",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "'一'类绝对化用语。阿胶产品常见误用：'唯一正宗阿胶'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "全国唯一",
+        "市场唯一",
+        "行业唯一"
+      ],
+      "compliant_alternatives": [],
+      "tags": [
+        "一类",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "ADV-ONE-00002",
+      "word": "第一",
+      "pinyin": "diyi",
+      "category_l1": "ADV",
+      "category_l2": "ADV-ONE",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "'一'类绝对化用语。注意：'像第一次恋爱'等非绝对化语境不在此列",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "全国第一",
+        "行业第一",
+        "销量第一"
+      ],
+      "white_list_contexts": [
+        "序号表述如'第一步骤'、'第一个工序'等非商业排名语境"
+      ],
+      "compliant_alternatives": [
+        "领先品牌",
+        "知名品牌"
+      ],
+      "tags": [
+        "一类"
+      ]
+    },
+    {
+      "id": "EFF-BLD-00001",
+      "word": "补血",
+      "pinyin": "buxue",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BLD",
+      "category_l3": "EFF-BLD-NOURISH",
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "功效宣称核心词。中药饮片阿胶药典记载'补血滋阴'功效可使用；保健食品应使用批文批准的'改善营养性贫血'而非'补血'；普通食品绝对禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "除医疗、药品、医疗器械广告外，禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        },
+        {
+          "law_name": "中华人民共和国食品安全法",
+          "article": "第七十三条",
+          "content": "食品广告的内容应当真实合法，不得含有虚假内容，不得涉及疾病预防、治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "药典记载阿胶'补血滋阴'功效，中药饮片可使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品应使用批文批准功能'改善营养性贫血'，不得使用'补血'表述"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止宣称任何功效，'补血'绝对禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品按说明书功效表述使用"
+        }
+      },
+      "variants": [
+        "补气血",
+        "补血养颜",
+        "养血",
+        "气血双补"
+      ],
+      "compliant_alternatives": {
+        "tcm_herb": [
+          "补血滋阴（药典原话）"
+        ],
+        "health_food": [
+          "改善营养性贫血（蓝帽子批文功能）"
+        ],
+        "regular_food": [
+          "含阿胶成分",
+          "传统滋补食品"
+        ]
+      },
+      "tags": [
+        "功效宣称",
+        "补血类",
+        "核心风险词",
+        "阿胶最高频"
+      ],
+      "source": {
+        "type": "legal",
+        "name": "中国药典+广告法+食品安全法",
+        "collected_date": "2026-07-30"
+      }
+    },
+    {
+      "id": "EFF-BLD-00002",
+      "word": "补气血",
+      "pinyin": "buqixue",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BLD",
+      "category_l3": "EFF-BLD-NOURISH",
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "功效宣称词，'补血'的扩展表述，风险同'补血'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "中药饮片可使用，属中医功效范畴"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品批文未含此功能，禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "按说明书使用"
+        }
+      },
+      "variants": [
+        "气血双补",
+        "调理气血",
+        "补气养血"
+      ],
+      "compliant_alternatives": {
+        "regular_food": [
+          "含阿胶成分",
+          "传统美食"
+        ]
+      },
+      "tags": [
+        "功效宣称",
+        "补血类",
+        "核心风险词",
+        "阿胶高频"
+      ]
+    },
+    {
+      "id": "EFF-BLD-00003",
+      "word": "滋阴",
+      "pinyin": "ziyin",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BLD",
+      "category_l3": "EFF-BLD-NOURISH",
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "药典记载阿胶功效'补血滋阴'的组成部分。中药饮片可使用；保健食品/普通食品禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "药典记载'补血滋阴'功效，可使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品批文未含此功能，禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "按说明书使用"
+        }
+      },
+      "variants": [
+        "滋阴润燥",
+        "滋阴补血"
+      ],
+      "tags": [
+        "功效宣称",
+        "补血类",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "EFF-BLD-00004",
+      "word": "润燥",
+      "pinyin": "runzao",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BLD",
+      "category_l3": "EFF-BLD-MOISTEN",
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "药典记载阿胶功效之一'润燥'。中药饮片可使用；保健食品/普通食品禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "药典记载'润燥'功效，可使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品批文未含此功能，禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "按说明书使用"
+        }
+      },
+      "tags": [
+        "功效宣称",
+        "补血类",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "EFF-BLD-00005",
+      "word": "止血",
+      "pinyin": "zhixue",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BLD",
+      "category_l3": "EFF-BLD-HEMOSTASIS",
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "药典记载阿胶功效之一'止血'。中药饮片可使用；保健食品/普通食品绝对禁止（涉及疾病治疗功能）",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "药典记载'止血'功效，可使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "涉及疾病治疗功能，绝对禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "涉及疾病治疗功能，绝对禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "按说明书使用"
+        }
+      },
+      "tags": [
+        "功效宣称",
+        "补血类",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "EFF-BEA-00001",
+      "word": "美容养颜",
+      "pinyin": "meirongyangyan",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BEA",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "功效宣称词。阿胶产品常见误用：宣称'阿胶糕美容养颜'。药典未记载阿胶有美容功效，保健食品批文也未含此功能，所有产品类型均禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        },
+        {
+          "law_name": "保健食品广告审查暂行规定",
+          "article": "第七条",
+          "content": "保健食品广告不得含有表示功效的断言或者保证，不得含有误导性表述",
+          "source_url": "http://www.nmpa.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "药典未记载美容功效，禁止"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "批文未含美容功能，禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "说明书未含美容功效，禁止"
+        }
+      },
+      "variants": [
+        "养颜美容",
+        "美容驻颜",
+        "驻颜"
+      ],
+      "compliant_alternatives": {
+        "regular_food": [
+          "含阿胶成分的传统美食"
+        ]
+      },
+      "tags": [
+        "功效宣称",
+        "美容类",
+        "阿胶高频误用",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EFF-BEA-00002",
+      "word": "抗衰老",
+      "pinyin": "kangshuailao",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BEA",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "功效宣称词。阿胶产品常见误用：暗示'阿胶抗衰老'。药典未记载，批文未含此功能",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "药典未记载抗衰老功效"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "批文未含抗衰老功能"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "说明书未含抗衰老功效"
+        }
+      },
+      "variants": [
+        "延缓衰老",
+        "逆龄",
+        "抗老"
+      ],
+      "tags": [
+        "功效宣称",
+        "美容类",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EFF-BEA-00003",
+      "word": "淡斑",
+      "pinyin": "danban",
+      "category_l1": "EFF",
+      "category_l2": "EFF-BEA",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "功效宣称词。暗示阿胶有祛斑功效，属化妆品/特殊化妆品功效范畴，食品/保健品不得宣称",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "药典未记载淡斑功效"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "批文未含淡斑功能"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "说明书未含淡斑功效"
+        }
+      },
+      "variants": [
+        "祛斑",
+        "淡斑美白",
+        "祛斑养颜"
+      ],
+      "tags": [
+        "功效宣称",
+        "美容类"
+      ]
+    },
+    {
+      "id": "EFF-IMM-00001",
+      "word": "增强免疫力",
+      "pinyin": "zengqiangmianyili",
+      "category_l1": "EFF",
+      "category_l2": "EFF-IMM",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "保健功能宣称词。蓝帽子保健食品如批文含'增强免疫力'功能则可使用；中药饮片/普通食品禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十八条",
+          "content": "保健食品广告应当显著标明'本品不能代替药物'，不得表示功效的断言或保证",
+          "source_url": "http://www.npc.gov.cn/"
+        },
+        {
+          "law_name": "保健食品广告审查暂行规定",
+          "article": "第七条",
+          "content": "保健食品广告应当与批准的内容相符",
+          "source_url": "http://www.nmpa.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "中药饮片不得宣称保健食品功能"
+        },
+        "health_food": {
+          "risk_level": "L0",
+          "note": "批文已批准'增强免疫力'功能，可使用，须标明'本品不能代替药物'"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "OTC药品不得使用保健食品功能表述"
+        }
+      },
+      "variants": [
+        "提高免疫力",
+        "免疫调节",
+        "增强免疫"
+      ],
+      "white_list_contexts": [
+        "保健食品广告中标注蓝帽子标识和'本品不能代替药物'警示语"
+      ],
+      "compliant_alternatives": {
+        "regular_food": [
+          "含阿胶成分",
+          "传统滋补食品"
+        ]
+      },
+      "tags": [
+        "功效宣称",
+        "免疫类",
+        "蓝帽子功能",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "EFF-IMM-00002",
+      "word": "改善营养性贫血",
+      "pinyin": "gaishanyingyangxingpinxue",
+      "category_l1": "EFF",
+      "category_l2": "EFF-IMM",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "蓝帽子批准的保健功能。保健食品可使用（须与批文一致）；中药饮片/普通食品/OTC不得使用此保健食品专用表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十八条",
+          "content": "保健食品广告应当显著标明'本品不能代替药物'",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "中药饮片不得使用保健食品功能表述"
+        },
+        "health_food": {
+          "risk_level": "L0",
+          "note": "批文已批准此功能，可使用，须标明'本品不能代替药物'"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止任何功效宣称"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "OTC药品不得使用保健食品功能表述"
+        }
+      },
+      "variants": [
+        "改善贫血",
+        "营养性贫血"
+      ],
+      "white_list_contexts": [
+        "保健食品广告中标注蓝帽子标识和'本品不能代替药物'"
+      ],
+      "tags": [
+        "功效宣称",
+        "蓝帽子功能",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "EFF-MED-00001",
+      "word": "治疗",
+      "pinyin": "zhiliao",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语。除药品/医疗器械广告外，其他广告不得涉及疾病治疗功能。阿胶直播常见误用：'阿胶治疗贫血'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "除医疗、药品、医疗器械广告外，禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片广告也不得直接宣称'治疗'，需按药典功能主治表述"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品绝对禁止宣称治疗功能"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品绝对禁止宣称治疗功能"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品可按说明书功能主治使用"
+        }
+      },
+      "variants": [
+        "治好",
+        "治愈",
+        "治贫血",
+        "治失眠"
+      ],
+      "tags": [
+        "功效宣称",
+        "医疗类",
+        "绝对禁止",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EFF-MED-00002",
+      "word": "治愈",
+      "pinyin": "zhiyu",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语，暗示疾病治愈效果",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "OTC药品广告也不得保证治愈率"
+        }
+      }
+    },
+    {
+      "id": "EFF-MED-00003",
+      "word": "疗效",
+      "pinyin": "liaoxiao",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语。阿胶产品常见误用：'阿胶疗效显著'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "中药饮片广告不得使用'疗效'表述"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "药品广告不得含有功效保证"
+        }
+      },
+      "variants": [
+        "药效",
+        "效果显著",
+        "见效快"
+      ],
+      "tags": [
+        "功效宣称",
+        "医疗类",
+        "阿胶高频误用",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EFF-MED-00004",
+      "word": "防癌",
+      "pinyin": "fangai",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语，暗示疾病预防功能，所有非药品广告绝对禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "药品广告也不得宣称防癌"
+        }
+      },
+      "variants": [
+        "抗癌",
+        "抑制肿瘤",
+        "防肿瘤"
+      ]
+    },
+    {
+      "id": "EFF-MED-00005",
+      "word": "调理月经",
+      "pinyin": "tiaoliyuejing",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "涉及疾病治疗功能的表述。阿胶直播常见误用：'吃阿胶调理月经'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片如药典功能主治含相关表述可谨慎使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品绝对禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品绝对禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品如说明书含相关功能主治可使用"
+        }
+      },
+      "variants": [
+        "调经",
+        "调理经期",
+        "改善月经不调"
+      ],
+      "tags": [
+        "功效宣称",
+        "医疗类",
+        "阿胶高频误用",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EFF-MED-00006",
+      "word": "降血压",
+      "pinyin": "jiangxueya",
+      "category_l1": "EFF",
+      "category_l2": "EFF-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "涉及疾病治疗功能的表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "阿胶药典功能不含降血压"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "批文未含此功能"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "说明书未含此功能"
+        }
+      },
+      "variants": [
+        "降血糖",
+        "降血脂"
+      ]
+    },
+    {
+      "id": "FMD-DIS-00001",
+      "word": "贫血",
+      "pinyin": "pinxue",
+      "category_l1": "FMD",
+      "category_l2": "FMD-DIS",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "疾病名称。食品广告不得涉及疾病名称。注意：保健食品批准功能'改善营养性贫血'中含'贫血'二字，但表述方式不同——批文功能可使用，单独使用'贫血'作为疾病名称则禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能，不得使用医疗用语或者易使推销的商品与药品、医疗器械相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        },
+        {
+          "law_name": "中华人民共和国食品安全法",
+          "article": "第七十三条",
+          "content": "食品广告不得涉及疾病预防、治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片功能主治中如涉及可谨慎使用，需按药典表述"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "仅在'改善营养性贫血'完整批文功能表述中可使用，单独使用'贫血'禁止"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品不得涉及疾病名称，绝对禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品按说明书功能主治使用"
+        }
+      },
+      "variants": [
+        "缺铁性贫血",
+        "营养性贫血"
+      ],
+      "white_list_contexts": [
+        "保健食品完整批文功能表述'改善营养性贫血'"
+      ],
+      "tags": [
+        "食品药品界限",
+        "疾病名称",
+        "核心风险词",
+        "阿胶高频"
+      ]
+    },
+    {
+      "id": "FMD-DIS-00002",
+      "word": "失眠",
+      "pinyin": "shimian",
+      "category_l1": "FMD",
+      "category_l2": "FMD-DIS",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "疾病名称。食品广告不得涉及疾病名称。阿胶直播常见误用：'吃阿胶治失眠'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片如药典功能主治含相关表述可谨慎使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "批文未含此功能"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品不得涉及疾病名称"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品按说明书使用"
+        }
+      },
+      "variants": [
+        "改善睡眠",
+        "助眠",
+        "治疗失眠"
+      ],
+      "tags": [
+        "食品药品界限",
+        "疾病名称",
+        "阿胶高频误用",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "FMD-DIS-00003",
+      "word": "月经不调",
+      "pinyin": "yuejingbutiao",
+      "category_l1": "FMD",
+      "category_l2": "FMD-DIS",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "疾病名称。食品广告不得涉及疾病名称",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片如药典功能主治含相关表述可谨慎使用"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品按说明书使用"
+        }
+      },
+      "tags": [
+        "食品药品界限",
+        "疾病名称",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "FMD-MED-00001",
+      "word": "药用",
+      "pinyin": "yaoyong",
+      "category_l1": "FMD",
+      "category_l2": "FMD-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语。普通食品宣称'药用'会导致食品与药品混淆。阿胶产品常见误用：'药用阿胶糕'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "不得使用医疗用语或者易使推销的商品与药品相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "中药饮片本身即药用，表述合理"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品不得使用'药用'表述"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品不得使用'药用'表述"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品即药品，表述合理"
+        }
+      },
+      "variants": [
+        "药用级",
+        "药用价值",
+        "入药"
+      ],
+      "tags": [
+        "食品药品界限",
+        "医疗术语",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "FMD-MED-00002",
+      "word": "药食同源",
+      "pinyin": "yaoshitongyuan",
+      "category_l1": "FMD",
+      "category_l2": "FMD-BND",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "边界模糊词。'药食同源'是中医理论概念，但在食品广告中使用会模糊食品与药品界限。阿胶确实在药典中有收载，但普通食品阿胶糕使用此表述会误导消费者认为有药用功效",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "不得使用医疗用语或者易使推销的商品与药品相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "中药饮片使用'药食同源'表述合理"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "保健食品谨慎使用，需确保不误导消费者"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品使用此表述会模糊食品与药品界限，禁止"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品使用此表述合理"
+        }
+      },
+      "variants": [
+        "药食两用",
+        "既是食品又是药品"
+      ],
+      "tags": [
+        "食品药品界限",
+        "边界模糊",
+        "阿胶高频误用",
+        "核心风险词"
+      ]
+    },
+    {
+      "id": "FMD-MED-00003",
+      "word": "名贵药材",
+      "pinyin": "mingguiyaochai",
+      "category_l1": "FMD",
+      "category_l2": "FMD-BND",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "边界模糊词。普通食品使用'名贵药材'表述会误导消费者认为食品有药用功效",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "不得使用医疗用语或者易使推销的商品与药品相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L0",
+          "note": "中药饮片可使用"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "保健食品谨慎使用"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品禁止，会模糊食品与药品界限"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品可使用"
+        }
+      },
+      "variants": [
+        "名贵中药",
+        "珍贵药材",
+        "道地药材"
+      ],
+      "compliant_alternatives": {
+        "regular_food": [
+          "优质原料",
+          "精选原料"
+        ]
+      },
+      "tags": [
+        "食品药品界限",
+        "边界模糊",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "FMD-MED-00004",
+      "word": "疗程",
+      "pinyin": "liaocheng",
+      "category_l1": "FMD",
+      "category_l2": "FMD-MED",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "医疗术语。'疗程'是医疗概念，食品/保健食品不得使用。阿胶产品常见误用：'一个疗程见效'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "不得使用医疗用语或者易使推销的商品与药品相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片广告中也应谨慎使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品不得使用医疗术语"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品不得使用医疗术语"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品可使用"
+        }
+      },
+      "variants": [
+        "一个疗程",
+        "按疗程服用",
+        "三个疗程"
+      ],
+      "compliant_alternatives": {
+        "regular_food": [
+          "坚持食用",
+          "日常食用"
+        ],
+        "health_food": [
+          "按推荐量食用",
+          "日常补充"
+        ]
+      },
+      "tags": [
+        "食品药品界限",
+        "医疗术语",
+        "阿胶高频误用",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "FMD-MED-00005",
+      "word": "遵医嘱",
+      "pinyin": "zunyizhu",
+      "category_l1": "FMD",
+      "category_l2": "FMD-MED",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "医疗术语。暗示产品需要医生指导使用，模糊食品与药品界限",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "不得使用医疗用语或者易使推销的商品与药品相混淆的用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "中药饮片可谨慎使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "保健食品不得使用"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "普通食品不得使用"
+        },
+        "otc_drug": {
+          "risk_level": "L0",
+          "note": "OTC药品可使用"
+        }
+      },
+      "variants": [
+        "请遵医嘱",
+        "谨遵医嘱",
+        "咨询医师"
+      ]
+    },
+    {
+      "id": "PLT-TAG-00001",
+      "word": "京东自营",
+      "pinyin": "jingdongziying",
+      "category_l1": "PLT",
+      "category_l2": "PLT-TAG",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "标签滥用。东阿阿胶为官方旗舰店（POP模式），非京东自营，使用'京东自营'标签属虚假宣传",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台发布违规宣传信息细则",
+          "article": "蹭京东官方",
+          "content": "非自营商品不得使用'京东自营''京东物流'等京东官方标识",
+          "source_url": "https://rule.jd.com/rule/ruleDetail.action?ruleId=694160650670313472"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1",
+          "note": "旗舰店商品不得使用"
+        },
+        "health_food": {
+          "risk_level": "L1",
+          "note": "旗舰店商品不得使用"
+        },
+        "regular_food": {
+          "risk_level": "L1",
+          "note": "旗舰店商品不得使用"
+        },
+        "otc_drug": {
+          "risk_level": "L1",
+          "note": "旗舰店商品不得使用"
+        }
+      },
+      "variants": [
+        "自营",
+        "京东自营正品",
+        "京东发货"
+      ],
+      "tags": [
+        "平台规则",
+        "标签滥用",
+        "旗舰店专属风险"
+      ]
+    },
+    {
+      "id": "PLT-TAG-00002",
+      "word": "京东物流",
+      "pinyin": "jingdongwuliu",
+      "category_l1": "PLT",
+      "category_l2": "PLT-TAG",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "标签滥用。旗舰店如使用京东物流配送可标注，但不得暗示为京东自营",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台发布违规宣传信息细则",
+          "article": "蹭京东官方",
+          "content": "不得使用京东官方标识误导消费者",
+          "source_url": "https://rule.jd.com/rule/ruleDetail.action?ruleId=694160650670313472"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "如实际使用京东物流可标注，但不得暗示自营"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      }
+    },
+    {
+      "id": "PLT-DIV-00001",
+      "word": "微信号",
+      "pinyin": "weixinhao",
+      "category_l1": "PLT",
+      "category_l2": "PLT-DIV",
+      "category_l3": "PLT-DIV-CONTACT",
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "导流违规。京东平台禁止在商品信息中留联系方式导流到站外",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台商品信息管理规范",
+          "article": "导流违规",
+          "content": "商品信息中不得包含微信号、QQ号等联系方式",
+          "source_url": "https://rule.jd.com/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "微信",
+        "加微信",
+        "VX",
+        "vx号",
+        "加V"
+      ],
+      "tags": [
+        "平台规则",
+        "导流违规"
+      ]
+    },
+    {
+      "id": "PLT-DIV-00002",
+      "word": "二维码",
+      "pinyin": "ermawei",
+      "category_l1": "PLT",
+      "category_l2": "PLT-DIV",
+      "category_l3": "PLT-DIV-LINK",
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "导流违规。商品详情页图片中不得包含二维码引导站外",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台商品信息管理规范",
+          "article": "导流违规",
+          "content": "商品信息中不得包含二维码等站外引流方式",
+          "source_url": "https://rule.jd.com/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "扫码",
+        "扫一扫",
+        "长按识别"
+      ]
+    },
+    {
+      "id": "PLT-DIV-00003",
+      "word": "淘宝",
+      "pinyin": "taobao",
+      "category_l1": "PLT",
+      "category_l2": "PLT-DIV",
+      "category_l3": "PLT-DIV-PLATFORM",
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "跨平台导流违规。京东商品信息中不得出现其他电商平台名称",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台商品信息管理规范",
+          "article": "导流违规",
+          "content": "商品信息中不得包含其他电商平台信息",
+          "source_url": "https://rule.jd.com/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "天猫",
+        "拼多多",
+        "抖音小店"
+      ]
+    },
+    {
+      "id": "PLT-MKT-00001",
+      "word": "批发",
+      "pinyin": "pifa",
+      "category_l1": "PLT",
+      "category_l2": "PLT-MKT",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "营销违规。京东为零售平台，不得使用批发类表述",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台商品信息管理规范",
+          "article": "营销信息违规",
+          "content": "商品信息中不得包含批发、团购等非零售表述",
+          "source_url": "https://rule.jd.com/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "厂家直销",
+        "一手货源",
+        "团购",
+        "代购",
+        "微商",
+        "招商",
+        "加盟"
+      ]
+    },
+    {
+      "id": "PLT-DAT-00001",
+      "word": "销量第一",
+      "pinyin": "xiaoliangdiyi",
+      "category_l1": "PLT",
+      "category_l2": "PLT-DAT",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "数据违规。平台客观数据（销量、好评等）不得由商家自行填写或宣称排名",
+      "legal_basis": [
+        {
+          "law_name": "京东开放平台发布违规宣传信息细则",
+          "article": "虚假宣传",
+          "content": "不得虚构销量、好评等数据",
+          "source_url": "https://rule.jd.com/rule/ruleDetail.action?ruleId=694160650670313472"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "全网销量第一",
+        "行业销量第一",
+        "好评第一",
+        "销量冠军"
+      ]
+    },
+    {
+      "id": "PLT-PRI-00001",
+      "word": "跳楼价",
+      "pinyin": "tiaoloujia",
+      "category_l1": "PLT",
+      "category_l2": "PLT-PRI",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "价格违规。使用虚假低价表述，违反价格法和平台规则",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国价格法",
+          "article": "第十四条",
+          "content": "经营者不得利用虚假的或者使人误解的价格手段，诱骗消费者与其交易",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "清仓价",
+        "血本无归价",
+        "亏本甩卖"
+      ]
+    },
+    {
+      "id": "PLT-PRI-00002",
+      "word": "原价",
+      "pinyin": "yuanjia",
+      "category_l1": "PLT",
+      "category_l2": "PLT-PRI",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "价格违规。标注'原价'需有此前7日内在本交易场所成交交易凭证。阿胶促销常见误用：虚标原价制造折扣假象",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国价格法",
+          "article": "第十四条",
+          "content": "不得利用虚假价格手段诱骗消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需有成交凭证支撑"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "需有成交凭证支撑"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "需有成交凭证支撑"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "需有成交凭证支撑"
+        }
+      },
+      "variants": [
+        "划线价",
+        "原价XX",
+        "吊牌价"
+      ],
+      "white_list_contexts": [
+        "有此前7日内成交交易凭证的情况下可标注"
+      ],
+      "tags": [
+        "平台规则",
+        "价格违规",
+        "阿胶促销高频"
+      ]
+    },
+    {
+      "id": "PLT-QUA-00001",
+      "word": "国家免检",
+      "pinyin": "guojiamianjian",
+      "category_l1": "PLT",
+      "category_l2": "PLT-QUA",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "资质违规。国家已废止免检制度，不得使用'免检'表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(三)项",
+          "content": "广告不得使用'最佳'等用语",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "质量免检",
+        "免检产品",
+        "国家免检产品"
+      ]
+    },
+    {
+      "id": "PLT-QUA-00002",
+      "word": "纯天然",
+      "pinyin": "chuntianran",
+      "category_l1": "PLT",
+      "category_l2": "PLT-QUA",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "资质违规。'纯天然'无国标定义，易构成虚假宣传。阿胶产品常见误用：'纯天然阿胶糕'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告以虚假或者引人误解的内容欺骗、误导消费者的，构成虚假广告",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "'纯天然'无国标定义，建议不使用"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "同上"
+        }
+      },
+      "variants": [
+        "纯天然原料",
+        "全天然",
+        "天然纯"
+      ],
+      "compliant_alternatives": [
+        "阿胶原料",
+        "传统工艺"
+      ],
+      "tags": [
+        "平台规则",
+        "资质违规",
+        "阿胶高频误用"
+      ]
+    },
+    {
+      "id": "EJ-ORI-00001",
+      "word": "正宗",
+      "pinyin": "zhengzong",
+      "category_l1": "EJ",
+      "category_l2": "EJ-ORI",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "阿胶行业特有风险词。'正宗'本身非绝对禁止词，但需有道地药材证明或地理标志证明。东阿阿胶有地理标志保护，可使用但建议谨慎，避免与'最正宗'混淆",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "有道地药材证明/地理标志可使用，需确保证明有效"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "同上"
+        }
+      },
+      "variants": [
+        "正宗阿胶",
+        "真正正宗"
+      ],
+      "white_list_contexts": [
+        "持有东阿阿胶地理标志保护产品证明的情况下可使用"
+      ],
+      "compliant_alternatives": [
+        "东阿原产",
+        "道地阿胶（需证明）"
+      ],
+      "tags": [
+        "阿胶行业",
+        "正宗道地",
+        "需资质佐证"
+      ]
+    },
+    {
+      "id": "EJ-ORI-00002",
+      "word": "道地",
+      "pinyin": "daodi",
+      "category_l1": "EJ",
+      "category_l2": "EJ-ORI",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "word",
+      "description": "阿胶行业特有风险词。'道地'是中药材品质评价概念，需有道地药材证明。东阿阿胶产自山东东阿县，有地理标志保护",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "有东阿原产地证明可使用"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "同上"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "同上"
+        }
+      },
+      "variants": [
+        "道地阿胶",
+        "道地药材",
+        "道地原料"
+      ],
+      "white_list_contexts": [
+        "持有东阿县原产地证明/地理标志保护产品认证"
+      ],
+      "tags": [
+        "阿胶行业",
+        "正宗道地",
+        "需资质佐证"
+      ]
+    },
+    {
+      "id": "EJ-HIS-00001",
+      "word": "百年传承",
+      "pinyin": "bainianchuancheng",
+      "category_l1": "EJ",
+      "category_l2": "EJ-HIS",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "历史传承类。需有历史资料佐证。东阿阿胶有近三千年历史记载，可使用但需确保表述准确，不得夸大",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需有史料佐证，建议表述为'传承工艺'"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "千年传承",
+        "千年古方",
+        "传承千年"
+      ],
+      "compliant_alternatives": [
+        "传统工艺",
+        "经典工艺",
+        "非遗工艺（如有非遗认证）"
+      ],
+      "tags": [
+        "阿胶行业",
+        "历史传承",
+        "需资质佐证"
+      ]
+    },
+    {
+      "id": "EJ-CMP-00001",
+      "word": "完爆",
+      "pinyin": "wanbao",
+      "category_l1": "EJ",
+      "category_l2": "EJ-CMP",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "品质对比类。贬低其他经营者，违反反不正当竞争法。直播常见误用：'我们阿胶完爆其他品牌'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国反不正当竞争法",
+          "article": "第十一条",
+          "content": "经营者不得编造、传播虚假信息或者误导性信息，损害竞争对手的商业信誉",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "吊打",
+        "碾压",
+        "秒杀同行",
+        "吊打同行"
+      ],
+      "tags": [
+        "阿胶行业",
+        "品质对比",
+        "不正当竞争",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "EJ-CMP-00002",
+      "word": "比某品牌好",
+      "pinyin": "bimoupinpaihao",
+      "category_l1": "EJ",
+      "category_l2": "EJ-CMP",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "品质对比类。直接或暗示对比贬低其他品牌",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国反不正当竞争法",
+          "article": "第十一条",
+          "content": "经营者不得损害竞争对手的商业信誉",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "比XX好",
+        "优于XX",
+        "比同行强"
+      ]
+    },
+    {
+      "id": "EJ-QUA-00001",
+      "word": "零添加",
+      "pinyin": "lingtianjia",
+      "category_l1": "EJ",
+      "category_l2": "EJ-QUA",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "品质宣称类。'零添加'需提供检测报告证明，否则构成虚假宣传。阿胶糕等产品常见误用",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需提供检测报告"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "需提供检测报告"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "需提供检测报告"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "需提供检测报告"
+        }
+      },
+      "variants": [
+        "无添加",
+        "零防腐剂",
+        "零色素"
+      ],
+      "white_list_contexts": [
+        "有第三方检测报告证明不含相应添加剂"
+      ],
+      "compliant_alternatives": [
+        "严格质检",
+        "品质保证"
+      ],
+      "tags": [
+        "阿胶行业",
+        "品质宣称",
+        "需检测报告"
+      ]
+    },
+    {
+      "id": "EJ-QUA-00002",
+      "word": "有机阿胶",
+      "pinyin": "youjierjiao",
+      "category_l1": "EJ",
+      "category_l2": "EJ-QUA",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "品质宣称类。使用'有机'标识需持有有机产品认证证书",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        },
+        {
+          "law_name": "有机产品认证管理办法",
+          "article": "第十五条",
+          "content": "未获得有机产品认证的，不得在产品或者包装及标签上标注'有机'字样",
+          "source_url": "http://www.cnca.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "需持有有机认证证书"
+        },
+        "health_food": {
+          "risk_level": "L2",
+          "note": "需持有有机认证证书"
+        },
+        "regular_food": {
+          "risk_level": "L2",
+          "note": "需持有有机认证证书"
+        },
+        "otc_drug": {
+          "risk_level": "L2",
+          "note": "需持有有机认证证书"
+        }
+      },
+      "white_list_contexts": [
+        "持有有效有机产品认证证书"
+      ],
+      "tags": [
+        "阿胶行业",
+        "品质宣称",
+        "需认证"
+      ]
+    },
+    {
+      "id": "FPM-FRD-00001",
+      "word": "零风险",
+      "pinyin": "lingfengxian",
+      "category_l1": "EFF",
+      "category_l2": "FPM-FRD",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "涉嫌欺诈表述。任何产品都有风险，'零风险'属虚假保证。阿胶直播常见误用：'零风险见效'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十五条",
+          "content": "招商等有投资回报预期的商品或者服务广告，不得含有对未来效果、收益或者与其相关的情况作出保证性承诺",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "无风险",
+        "百分百安全",
+        "绝对安全"
+      ],
+      "tags": [
+        "涉嫌欺诈",
+        "直播高风险"
+      ]
+    },
+    {
+      "id": "FPM-URG-00001",
+      "word": "仅限今天",
+      "pinyin": "jinxiangintian",
+      "category_l1": "EFF",
+      "category_l2": "FPM-URG",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "激发抢购心理表述。直播中常见，如每天都说'仅限今天'则构成虚假宣传",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2",
+          "note": "如确实仅限当天可使用，反复使用则违规"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "仅此一天",
+        "最后一天",
+        "今天最后",
+        "错过就没"
+      ],
+      "white_list_contexts": [
+        "确为限时促销且实际执行时可用"
+      ],
+      "tags": [
+        "抢购心理",
+        "直播高频"
+      ]
+    },
+    {
+      "id": "FPM-FAL-00001",
+      "word": "包治百病",
+      "pinyin": "baozhibaibing",
+      "category_l1": "EFF",
+      "category_l2": "FPM-FAL",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "phrase",
+      "description": "虚假宣传暗示。暗示产品有万能疗效，绝对禁止",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第十七条",
+          "content": "禁止其他任何广告涉及疾病治疗功能",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "万能",
+        "祖传秘方",
+        "特效"
+      ]
+    },
+    {
+      "id": "FPM-FAL-00002",
+      "word": "祖传",
+      "pinyin": "zuchuan",
+      "category_l1": "EFF",
+      "category_l2": "FPM-FAL",
+      "category_l3": null,
+      "risk_level": "L1",
+      "word_type": "word",
+      "description": "虚假宣传暗示。'祖传'暗示有秘方和特殊疗效，无法证实的表述",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第二十八条",
+          "content": "广告不得以虚假或者引人误解的内容欺骗、误导消费者",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L1"
+        },
+        "health_food": {
+          "risk_level": "L1"
+        },
+        "regular_food": {
+          "risk_level": "L1"
+        },
+        "otc_drug": {
+          "risk_level": "L1"
+        }
+      },
+      "variants": [
+        "祖传秘方",
+        "祖传工艺",
+        "世代祖传"
+      ]
+    },
+    {
+      "id": "FPM-SUP-00001",
+      "word": "逢凶化吉",
+      "pinyin": "fengxionghuaji",
+      "category_l1": "EFF",
+      "category_l2": "FPM-SUP",
+      "category_l3": null,
+      "risk_level": "L2",
+      "word_type": "phrase",
+      "description": "封建迷信用语。阿胶礼品装常见误用：暗示送阿胶能'逢凶化吉'",
+      "legal_basis": [
+        {
+          "law_name": "中华人民共和国广告法",
+          "article": "第九条第(七)项",
+          "content": "广告不得含有淫秽、色情、赌博、迷信、恐怖、暴力的内容",
+          "source_url": "http://www.npc.gov.cn/"
+        }
+      ],
+      "product_type_rules": {
+        "tcm_herb": {
+          "risk_level": "L2"
+        },
+        "health_food": {
+          "risk_level": "L2"
+        },
+        "regular_food": {
+          "risk_level": "L2"
+        },
+        "otc_drug": {
+          "risk_level": "L2"
+        }
+      },
+      "variants": [
+        "招财进宝",
+        "辟邪",
+        "转运",
+        "镇宅",
+        "风水宝地"
+      ],
+      "tags": [
+        "封建迷信",
+        "礼品装高频"
+      ]
+    }
+  ]
+}

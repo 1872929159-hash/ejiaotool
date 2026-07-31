@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "京东合规词库 - 规则条款结构定义",
+  "description": "定义法律法规条款和京东平台规则条款的标准数据结构",
+  "type": "object",
+  "required": [
+    "rule_id",
+    "rule_type",
+    "title",
+    "status",
+    "source_url",
+    "chapters",
+    "version",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "rule_id": {
+      "type": "string",
+      "description": "规则唯一ID，格式 LAW-{法规简称} 或 JD-{规则ID}"
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": ["legal", "platform"],
+      "description": "legal=法律法规, platform=平台规则"
+    },
+    "title": {
+      "type": "string",
+      "description": "规则/法规名称"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "副标题/版本说明"
+    },
+    "issuer": {
+      "type": "string",
+      "description": "发布机构"
+    },
+    "effective_date": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "生效日期"
+    },
+    "expire_date": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "失效日期（null表示现行有效）"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["effective", "superseded", "repealed"],
+      "description": "effective=有效, superseded=已替代, repealed=已废止"
+    },
+    "source_url": {
+      "type": "string",
+      "description": "来源URL"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["chapter_id", "chapter_title", "sections"],
+        "properties": {
+          "chapter_id": { "type": "string", "description": "章节ID" },
+          "chapter_title": { "type": "string", "description": "章节标题" },
+          "sections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["section_id", "content"],
+              "properties": {
+                "section_id": { "type": "string", "description": "条款ID" },
+                "article_number": { "type": "string", "description": "条款编号，如第九条" },
+                "article_title": { "type": "string", "description": "条款标题" },
+                "content": { "type": "string", "description": "条款全文" },
+                "sub_items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["item_id", "content"],
+                    "properties": {
+                      "item_id": { "type": "string", "description": "子项ID" },
+                      "item_label": { "type": "string", "description": "子项标签，如(三)" },
+                      "content": { "type": "string", "description": "子项内容" },
+                      "related_lexicon_categories": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "description": "关联词条分类编码"
+                      },
+                      "related_lexicon_ids": {
+                        "type": "array",
+                        "items": { "type": "string" },
+                        "description": "关联词条ID列表"
+                      }
+                    }
+                  },
+                  "description": "子项列表"
+                },
+                "penalty_reference": { "type": "string", "description": "对应处罚条款编号" },
+                "related_lexicon_categories": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "关联分类编码"
+                }
+              }
+            },
+            "description": "条款列表"
+          }
+        }
+      },
+      "description": "章节列表"
+    },
+    "penalty_summary": {
+      "type": "string",
+      "description": "处罚概述"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "标签"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "版本号"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "创建时间"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "更新时间"
+    }
+  }
+}

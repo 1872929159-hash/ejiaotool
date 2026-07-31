@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "京东合规词库 - 词库文件整体结构定义",
+  "description": "定义词库文件的整体结构（meta + entries）",
+  "type": "object",
+  "required": ["meta", "entries"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["file_name", "category_l1", "description", "total_count", "version", "last_updated", "schema_version"],
+      "properties": {
+        "file_name": { "type": "string", "description": "文件名" },
+        "category_l1": {
+          "type": "string",
+          "enum": ["ADV", "IND", "PLT", "FPM"],
+          "description": "一级分类码"
+        },
+        "description": { "type": "string", "description": "词库描述" },
+        "total_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "词条总数"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "词库版本号"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "最后更新时间"
+        },
+        "schema_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Schema版本号"
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "lexicon-entry.schema.json" },
+      "description": "词条列表"
+    }
+  }
+}
