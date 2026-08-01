@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>协同办公指导手册 · 东阿阿胶合规检测工具</title>
+<style>
+  :root{--c1:#993556;--c2:#1a73e8;--bg:#f6f7f9;--card:#fff;--text:#1f2329;--sub:#5f6368;--bor:#e0e3e8}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.75;padding-bottom:80px}
+  .hero{background:linear-gradient(135deg,var(--c1),#7a2840);color:#fff;text-align:center;padding:52px 20px 36px;border-radius:0 0 20px 20px}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.15);padding:3px 12px;border-radius:14px;font-size:12px;letter-spacing:.5px;margin-bottom:14px}
+  .hero h1{font-size:28px;margin-bottom:8px}
+  .hero .sub{font-size:15px;opacity:.9}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+  .card{background:var(--card);border:1px solid var(--bor);border-radius:14px;padding:22px 26px;margin-top:22px}
+  .card h2{font-size:19px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .card h2 .n{width:28px;height:28px;border-radius:7px;background:var(--c1);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .alert{background:#fff8e6;border:1px solid #ffe39b;border-radius:10px;padding:14px 18px;font-size:13px;color:#7a5b00;margin-top:14px}
+  .alert b{color:#5a4500}
+  .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;margin-left:6px}
+  .badge.ok{background:#e6f7e9;color:#1a7d36}
+  .badge.warn{background:#fff3cd;color:#856404}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+  th{text-align:left;background:#faf8f9;padding:10px 12px;border-bottom:2px solid var(--bor);color:var(--sub);font-weight:600}
+  td{padding:10px 12px;border-bottom:1px solid #f0f1f3;vertical-align:top}
+  .step-list{counter-reset:s;list-style:none}
+  .step-list li{counter-increment:s;position:relative;padding:12px 14px 12px 46px;margin-bottom:8px;background:#f9fafb;border-radius:8px;font-size:14px}
+  .step-list li::before{content:counter(s);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:50%;background:var(--c1);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .code{font-family:Consolas,Monaco,monospace;background:#f0f3f7;padding:3px 7px;border-radius:4px;font-size:12px;color:var(--c2)}
+  .flow-row{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch;margin:14px 0}
+  .flow-row .step{flex:1;min-width:100px;background:#f9fafb;border:1px solid var(--bor);border-radius:10px;padding:11px 8px;text-align:center;font-size:12px}
+  .flow-row .step b{display:block;font-size:13px;margin-bottom:3px;color:var(--c1)}
+  .flow-row .arr{display:flex;align-items:center;color:#c0c5cc;font-size:18px}
+  .zone tbody td:first-child{font-weight:700;color:var(--c1);width:60px}
+  .url-box{font-family:Consolas,monospace;font-size:13px;background:#eef5ff;border:1px solid #c8ddfc;padding:10px 14px;border-radius:8px;word-break:break-all;color:var(--c2)}
+  footer{text-align:center;margin-top:40px;font-size:12px;color:#b0b4bb}
+  .highlight{background:linear-gradient(180deg,transparent 60%,#ffeebb 60%)}
+  @media(max-width:600px){.flow-row{flex-direction:column}.flow-row .arr{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="tag">v2.0 · 多人协作版</span>
+  <h1>协同办公指导手册</h1>
+  <p class="sub">东阿阿胶 · 京东营销合规检测工具 —— 让你「不会写代码也能参与网站完善」</p>
+</div>
+
+<div class="wrap">
+
+<!-- 1. 总览 -->
+<div class="card">
+  <h2><span class="n">1</span> 你需要知道的三件事</h2>
+  <table>
+    <tr><td style="width:30%"><b>这是什么工具</b></td><td>粘贴营销文案 → 自动检测 763 条违禁词/敏感词 → AI 复核并给改写建议。覆盖京东/抖音/小红书等平台。</td></tr>
+    <tr><td><b>你需要什么技能</b></td><td>不需要会写代码。只需要「<span class="highlight">对 WorkBuddy 说人话</span>」+「<span class="highlight">用 GitHub Desktop 点按钮</span>」。</td></tr>
+    <tr><td><b>怎么看效果</b></td><td>公网地址：<span class="code">https://ejiaotool-dpm52u6g99x2.edgeone.cool</span><br>（任何人合并代码后 30-90 秒自动更新，刷新即见）</td></tr>
+  </table>
+</div>
+
+<!-- 2. 环境准备 -->
+<div class="card">
+  <h2><span class="n">2</span> 一次性环境准备（每人只做一次，10 分钟）</h2>
+  <table>
+    <tr><th>步骤</th><th>操作</th><th>说明</th></tr>
+    <tr>
+      <td><b>装三个软件</b></td>
+      <td>
+        ① <a href="https://desktop.github.com" target="_blank">GitHub Desktop</a>（必装，管理代码）<br>
+        ② <a href="https://nodejs.org" target="_blank">Node.js LTS</a>（建议装，本地预览）<br>
+        ③ WorkBuddy 桌面版（已装可跳过）
+      </td>
+      <td>全部默认安装，一路下一步</td>
+    </tr>
+    <tr>
+      <td><b>接受邀请</b></td>
+      <td>负责人会给你发 GitHub 邀请链接 → 点进去接受</td>
+      <td>仓库地址：<span class="code">github.com/1872929159-hash/ejiaotool</span></td>
+    </tr>
+    <tr>
+      <td><b>克隆代码</b></td>
+      <td>打开 GitHub Desktop → File → Clone Repository → 搜 <span class="code">1872929159-hash/ejiaotool</span> → Clone</td>
+      <td>路径建议放 D 盘（别带中文）</td>
+    </tr>
+    <tr>
+      <td><b>验证能跑</b></td>
+      <td>进仓库目录 → 双击 <span class="code">start.bat</span> → 浏览器自动打开 localhost:3456</td>
+      <td>看到检测工具页面 = 环境 OK</td>
+    </tr>
+  </table>
+  <div class="alert"><b>不想装 Node.js？</b> 可以跳过，直接靠公网地址看效果。但装了能本地秒看改动，不用每次等部署。</div>
+</div>
+
+<!-- 3. 日常协作 -->
+<div class="card">
+  <h2><span class="n">3</span> 日常协作流程（每次改东西都走这 5 步）</h2>
+  <div class="flow-row">
+    <div class="step"><b>① 同步代码</b>GitHub Desktop 点<br>"Fetch origin"<br>再点 "Pull"</div>
+    <div class="arr">→</div>
+    <div class="step"><b>② 开分支</b>对 WorkBuddy 说：<br>"从 main 开分支<br>feature/我的名字-改什么"</div>
+    <div class="arr">→</div>
+    <div class="step"><b>③ 改代码</b>对 WorkBuddy 说需求<br>（见第 5 节话术）<br>它帮你改文件</div>
+    <div class="arr">→</div>
+    <div class="step"><b>④ 本地验证</b>双击 start.bat<br>刷新 localhost:3456<br>确认改对了</div>
+    <div class="arr">→</div>
+    <div class="step"><b>⑤ 推送+PR</b>对 WorkBuddy 说：<br>"提交并推送"<br>去 GitHub 网页发 PR</div>
+  </div>
+  <div class="alert"><b>负责人合并后等 30-90 秒</b> → 公网自动更新 → 所有人 Ctrl+F5 刷新即见彼此改动。<b>不需要手动「发布」。</b></div>
+</div>
+
+<!-- 4. 约定 -->
+<div class="card">
+  <h2><span class="n">4</span> 协作约定（避免撞车）</h2>
+  <h3 style="font-size:15px;margin-top:8px;color:var(--c1)">📌 分支</h3>
+  <ul style="font-size:13px;margin:8px 0 14px;padding-left:20px;color:var(--sub)">
+    <li><span class="code">main</span> = 唯一主干，合并后自动部署。约定 <b>不可直接推 main</b>，必须发 Pull Request</li>
+    <li>你的分支：<span class="code">feature/名字-功能</span>，如 <span class="code">feature/zhangsan-改按钮颜色</span></li>
+    <li>一次只改一个功能，改完合并再开下一个</li>
+    <li><b>开改前一定先 Pull！</b>否则合并必冲突</li>
+  </ul>
+  <h3 style="font-size:15px;color:var(--c1)">🗂️ 文件分区</h3>
+  <p style="font-size:13px;color:var(--sub);margin:6px 0 10px">整个网站就一个文件 <span class="code">tools/合规检测工具.html</span>。约定 5 个区，每次只动一个，PR 标题注明：</p>
+  <table class="zone">
+    <tr><td>A 区</td><td>CSS 样式 / 颜色 / 字体 / 布局</td><td>如 "<b>[A区]</b> 按钮改成暗红色"</td></tr>
+    <tr><td>B 区</td><td>763 条词库数据（一般别动）</td><td>加新词需单独开 PR 和负责人确认</td></tr>
+    <tr><td>C 区</td><td>检测逻辑（runCheck 等）</td><td></td></tr>
+    <tr><td>D 区</td><td>AI 复核逻辑（runAiReview 等）</td><td></td></tr>
+    <tr><td>E 区</td><td>UI 文案 / 标题 / 提示语</td><td></td></tr>
+  </table>
+  <p style="font-size:12px;color:var(--sub);margin-top:8px">不同区同时改 ≈ 不冲突。同区冲突 → 让 WorkBuddy 处理。</p>
+</div>
+
+<!-- 5. 话术 -->
+<div class="card">
+  <h2><span class="n">5</span> 给 WorkBuddy 的话术（照着说就行）</h2>
+  <table>
+    <tr><th style="width:28%">目标</th><th>对 WorkBuddy 这样说</th></tr>
+    <tr><td>改配色</td><td><span class="code">把检测按钮颜色改成 #993556，清空按钮改成灰色</span></td></tr>
+    <tr><td>改文案</td><td><span class="code">把顶部标题从「京东营销合规」改成「多平台营销合规检测」</span></td></tr>
+    <tr><td>加功能</td><td><span class="code">在检测结果下面加一个「导出报告」按钮，点击下载 txt</span></td></tr>
+    <tr><td>改 AI 提示词</td><td><span class="code">把 AI 复核的提示词改成更严格的合规标准，加上「检查是否涉及虚假宣传」</span></td></tr>
+    <tr><td>同步代码</td><td><span class="code">先 pull 一下 main 最新代码</span></td></tr>
+    <tr><td>开分支</td><td><span class="code">从 main 开 feature/zhangsan-改按钮颜色</span></td></tr>
+    <tr><td>提交推送</td><td><span class="code">把当前改动提交，消息写「调整按钮配色」，推送到我的分支</span></td></tr>
+    <tr><td>发 PR</td><td><span class="code">帮我在 GitHub 上发 Pull Request，标题写 [A区] 改按钮配色</span></td></tr>
+    <tr><td>处理冲突</td><td><span class="code">帮我解决合并冲突</span></td></tr>
+  </table>
+</div>
+
+<!-- 6. GitHub Desktop -->
+<div class="card">
+  <h2><span class="n">6</span> GitHub Desktop 操作速查</h2>
+  <table>
+    <tr><th style="width:25%">你要做的</th><th>点哪里</th></tr>
+    <tr><td>拉取最新代码</td><td>顶部栏 → <b>Fetch origin</b>，变蓝后点 <b>Pull origin</b></td></tr>
+    <tr><td>查看改了什么</td><td>左侧面板 Changes 标签页，勾选/取消勾选文件</td></tr>
+    <tr><td>提交改动</td><td>左下角填消息 → 点 <b>Commit to xxx</b></td></tr>
+    <tr><td>推送到 GitHub</td><td>顶部栏 → <b>Push origin</b></td></tr>
+    <tr><td>创建 Pull Request</td><td>推送后顶部栏出现 <b>Create Pull Request</b> → 点它 → 跳转 GitHub 网页</td></tr>
+    <tr><td>在浏览器看仓库</td><td>顶部菜单 Repository → <b>View on GitHub</b></td></tr>
+  </table>
+</div>
+
+<!-- 7. FAQ -->
+<div class="card">
+  <h2><span class="n">7</span> 常见问题</h2>
+  <table>
+    <tr><td style="width:30%"><b>双击 start.bat 没反应？</b></td><td>没装 Node.js 或装了没重启电脑。安装 LTS 版后重试。实在不行直接用公网看效果。</td></tr>
+    <tr><td><b>push 推不上去？</b></td><td>通常是网络问题。换手机热点试试，或让负责人用 GitHub API 脚本上传（仓库里已备好）。</td></tr>
+    <tr><td><b>合并冲突了？</b></td><td>别慌。对 WorkBuddy 说「帮我解决合并冲突」就行。</td></tr>
+    <tr><td><b>改完公网怎么没变？</b></td><td>① 确认已合并到 main（不是只在你自己分支）；② 等 30-90 秒；③ Ctrl+F5 强制刷新。</td></tr>
+    <tr><td><b>改坏了怎么办？</b></td><td>只要没合并到 main 就没事——删掉分支重来。main 进不了坏代码。</td></tr>
+    <tr><td><b>想看某次改动的公网效果（没合并前）？</b></td><td>去 GitHub 仓库 → 你的 PR 页面 → 找 EdgeOne 自动生成的 Preview URL（如有）。或者自己本地 start.bat 看。</td></tr>
+  </table>
+</div>
+
+<footer>东阿阿胶 · 京东营销合规检测工具 v2.0 · 协同办公指导手册</footer>
+</div>
+
+</body>
+</html>
