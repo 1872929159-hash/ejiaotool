@@ -65,7 +65,7 @@
 >
 > 公网地址：`https://ejiaotool-dpm52u6g99x2.edgeone.cool`
 >
-> 📖 **协同办公指导手册**（发给同事看）：`https://ejiaotool-dpm52u6g99x2.edgeone.cool/guide/`
+> 📖 **协同办公指导手册**（发给同事看）：`https://ejiaotool-dpm52u6g99x2.edgeone.cool/guide.html`
 >
 > ⚡ EdgeOne Git 关联自动部署：push main 后 30-90 秒更新。
 
