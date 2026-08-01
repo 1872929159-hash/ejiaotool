@@ -3,7 +3,7 @@ cloud-deploy/
 edgeone-build/
 edgeone-deploy-ready/
 edgeone-deploy-*.zip
-edgeone-deploy/index.html
+# edgeone-deploy/index.html 已解除排除 — Git关联需仓库含此文件，构建命令留空
 edgeone-deploy/.edgeone/
 
 # ===== 环境与密钥 =====
