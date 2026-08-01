@@ -63,9 +63,9 @@
 
 > （EdgeOne Git 关联部署后的稳定地址，由负责人填）
 >
-> 公网地址：________________
+> 公网地址：`https://ejiaotool-dpm52u6g99x2.edgeone.cool`
 >
-> 合并到 main 后自动更新。如无法访问，联系负责人。
+> ⚡ EdgeOne Git 关联自动部署：push main 后 30-90 秒更新。用系统浏览器打开，如果链接需 token 找负责人。
 
 ---
 
