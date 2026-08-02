@@ -1910,6 +1910,7 @@ function renderKbEntries() {
 if(filtered.length===0){document.getElementById('kbEntries').innerHTML='<div class="empty-search-result">未找到匹配内容</div>';return;}
 
 
+
   document.getElementById('kbResultCount').textContent = '共 ' + filtered.length + ' 条';
   var container = document.getElementById('kbEntries');
   if (filtered.length === 0) {
@@ -2022,7 +2023,7 @@ function renderClEntries() {
   var cases = CASE_DATA.cases;
   var filtered = cases.filter(function(c) {
     if (clFilter.severity !== 'all' && c.severity !== clFilter.severity) return false;
-if(filtered.length===0){document.getElementById("clEntries").innerHTML='<div class="empty-search-result">未找到匹配内容</div>';return;}
+
     if (clFilter.type !== 'all' && c.violationType !== clFilter.type) return false;
     if (clFilter.search) {
       var q = clFilter.search.toLowerCase();
@@ -2031,6 +2032,7 @@ if(filtered.length===0){document.getElementById("clEntries").innerHTML='<div cla
     return true;
   });
 if(filtered.length===0){document.getElementById('clEntries').innerHTML='<div class="empty-search-result">未找到匹配内容</div>';return;}
+
 
   document.getElementById('clResultCount').textContent = '共 ' + filtered.length + ' 条';
   var container = document.getElementById('clEntries');
@@ -2156,7 +2158,7 @@ function renderLitEntries() {
   var tokens = q ? q.split(/\s+/).filter(Boolean) : [];
   var filtered = LITERATURE_DATA.filter(function(d) {
     if (litFilter.cat !== 'all' && d.category !== litFilter.cat) return false;
-if(filtered.length===0){document.getElementById("litEntries").innerHTML='<div class="empty-search-result">未找到匹配内容</div>';return;}
+
     if (!tokens.length) return true;
     var haystack = (d.name + ' ' + (d.summary || '') + ' ' + (d.content || '')).toLowerCase();
     for (var i = 0; i < tokens.length; i++) {
@@ -2165,6 +2167,7 @@ if(filtered.length===0){document.getElementById("litEntries").innerHTML='<div cl
     return true;
   });
 if(filtered.length===0){document.getElementById('litEntries').innerHTML='<div class="empty-search-result">未找到匹配内容</div>';return;}
+
 
   document.getElementById('litResultCount').textContent = '共 ' + filtered.length + ' 篇';
   document.getElementById('litCardHits').textContent = filtered.length;
