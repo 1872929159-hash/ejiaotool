@@ -2352,7 +2352,9 @@ input, textarea, select { font-family: inherit; }
     });
   }catch(e){}
 })();
-</script></head>
+</script><script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
 <body>
 
 <!-- ============ 顶部 Header ============ -->
@@ -2721,7 +2723,8 @@ input, textarea, select { font-family: inherit; }
       <!-- List View (default) -->
       <div id="litListView">
         <div class="panel">
-          <div class="panel-head"><span class="panel-title"><span class="mark"></span>文献目录 <span style="font-weight:400;font-size:12px;color:var(--ink-300);" id="litResultCount">共 54 篇</span></span></div>
+          <div class="panel-head"><span class="panel-title"><span class="mark"></span>文献目录 <span style="font-weight:400;font-size:12px;color:var(--ink-300);" id="litResultCount">共 54 篇</span></span></div><div style="margin:8px 0 12px;"><label style="display:inline-flex;align-items:center;gap:6px;padding:7px 14px;background:var(--seal-500);color:#FFF8E7;border-radius:8px;cursor:pointer;font-size:12px;transition:all 0.2s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1"><span>📁 上传文档解析</span><input type="file" accept=".pdf,.docx,.doc,.xlsx,.xls,.csv,.txt" style="display:none;" onchange="handleLitFileUpload(event)"></label><span style="margin-left:8px;font-size:11px;color:var(--ink-300);">支持 PDF / DOCX / Excel / TXT</span></div>
+          
           <div class="panel-body" id="litEntries" style="display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - 380px);overflow-y:auto;"></div>
         </div>
       </div>
@@ -2925,5 +2928,9 @@ window.addEventListener("load", function() {
   }
 });
 </script>
+<script>// Set pdf.js worker path
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc = https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js;
+}</script>
 </body>
 </html>
