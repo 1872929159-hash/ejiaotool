@@ -2368,10 +2368,10 @@ input, textarea, select { font-family: inherit; }
       </div>
     </div>
     <nav class="nav">
-      <span class="nav-item active" onclick="showMainPage()" onkeydown="if(event.key===Enter||event.key=== )showMainPage()" tabindex="0" role="button" style="cursor:pointer;">审核中心</span>
-      <span class="nav-item" onclick="toggleLiterature()" onkeydown="if(event.key===Enter||event.key=== )toggleLiterature()" tabindex="0" role="button" style="cursor:pointer;">合规文献</span>
-      <span class="nav-item" onclick="toggleCaseLibrary()" onkeydown="if(event.key===Enter||event.key=== )toggleCaseLibrary()" tabindex="0" role="button" style="cursor:pointer;">案例库</span>
-      <span class="nav-item" onclick="toggleKnowledgeBase()" onkeydown="if(event.key===Enter||event.key=== )toggleKnowledgeBase()" tabindex="0" role="button" style="text-decoration:none;cursor:pointer;">知识库</span>
+      <span class="nav-item active" onclick="showMainPage()" onkeydown="if(event.key==='Enter'||event.key===' ')showMainPage()" tabindex="0" role="button" style="cursor:pointer;">审核中心</span>
+      <span class="nav-item" onclick="toggleLiterature()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleLiterature()" tabindex="0" role="button" style="cursor:pointer;">合规文献</span>
+      <span class="nav-item" onclick="toggleCaseLibrary()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleCaseLibrary()" tabindex="0" role="button" style="cursor:pointer;">案例库</span>
+      <span class="nav-item" onclick="toggleKnowledgeBase()" onkeydown="if(event.key==='Enter'||event.key===' ')toggleKnowledgeBase()" tabindex="0" role="button" style="text-decoration:none;cursor:pointer;">知识库</span>
     </nav>
     <div class="header-spacer"></div>
     <div class="header-actions">
@@ -2772,7 +2772,7 @@ input, textarea, select { font-family: inherit; }
 <!-- ============ 案例库页面 ============ -->
 <div id="caseLibraryOverlay" style="display:none;position:relative;z-index:1;max-width:1600px;margin:0 auto;padding:10px 32px 80px;">
   <div style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
-    <div style="flex:1;min-width:140px;background:var(--paper-50);border:var(--border-soft);border-radius:10px;padding:16px 20px;text-align:center;box-shadow:var(--shadow-paper);"><div style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--seal-700);" id="clStatTotal">150</div><div style="font-size:12px;color:var(--ink-500);margin-top:6px;letter-spacing:0.1em;">合规案件总数</div></div>
+    <div style="flex:1;min-width:140px;background:var(--paper-50);border:var(--border-soft);border-radius:10px;padding:16px 20px;text-align:center;box-shadow:var(--shadow-paper);"><div style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--seal-700);" id="clStatTotal">50</div><div style="font-size:12px;color:var(--ink-500);margin-top:6px;letter-spacing:0.1em;">合规案件总数</div></div>
     <div style="flex:1;min-width:140px;background:var(--paper-50);border:var(--border-soft);border-radius:10px;padding:16px 20px;text-align:center;box-shadow:var(--shadow-paper);"><div style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--seal-700);" id="clStatMajor">-</div><div style="font-size:12px;color:var(--ink-500);margin-top:6px;letter-spacing:0.1em;">🔴 重大案件</div></div>
     <div style="flex:1;min-width:140px;background:var(--paper-50);border:var(--border-soft);border-radius:10px;padding:16px 20px;text-align:center;box-shadow:var(--shadow-paper);"><div style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--zhe-500);" id="clStatMedium">-</div><div style="font-size:12px;color:var(--ink-500);margin-top:6px;letter-spacing:0.1em;">🟠 中等案件</div></div>
     <div style="flex:1;min-width:140px;background:var(--paper-50);border:var(--border-soft);border-radius:10px;padding:16px 20px;text-align:center;box-shadow:var(--shadow-paper);"><div style="font-family:var(--font-serif);font-size:28px;font-weight:700;color:var(--dai-700);" id="clStatYears">2016-2026</div><div style="font-size:12px;color:var(--ink-500);margin-top:6px;letter-spacing:0.1em;">覆盖年份</div></div>
@@ -2804,7 +2804,7 @@ input, textarea, select { font-family: inherit; }
         <input type="text" id="clSearch" placeholder="搜索案件标题、企业、违规类型..." style="width:100%;padding:14px 18px 14px 44px;font-size:15px;border:var(--border-mid);border-radius:10px;background:var(--paper-50);color:var(--ink-900);font-family:var(--font-sans);outline:none;transition:all var(--dur-fast) var(--ease-out);">
       </div>
       <div class="panel">
-        <div class="panel-head"><span class="panel-title"><span class="mark"></span>案件列表 <span style="font-weight:400;font-size:12px;color:var(--ink-300);" id="clResultCount">共 150 条</span></span></div>
+        <div class="panel-head"><span class="panel-title"><span class="mark"></span>案件列表 <span style="font-weight:400;font-size:12px;color:var(--ink-300);" id="clResultCount">共 50 条</span></span></div>
         <div class="panel-body" id="clEntries" style="display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 180px);overflow-y:auto;"></div>
       </div>
     </div>
