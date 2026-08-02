@@ -633,15 +633,17 @@ function clearApiKey() {
 function loadApiKey() {
   const key = localStorage.getItem(DS_API_KEY_STORAGE);
   const status = document.getElementById('apiKeyStatus');
+  var label = document.getElementById('apiKeyLabel');
   if (key) {
     status.textContent = '自有 Key ✓';
     status.classList.add('configured');
-  
-  var lbl = document.getElementById('apiKeyLabel'); if (lbl) lbl.textContent = key ? 'Key 已配置' : '未配置 Key';
-} else {
+    status.classList.remove('demo');
+    if (label) label.textContent = 'Key 已配置';
+  } else {
     status.textContent = '已内置演示 Key';
     status.classList.remove('configured');
     status.classList.add('demo');
+    if (label) label.textContent = '已内置 Key';
   }
 }
 
@@ -1392,11 +1394,6 @@ function runCheckFromInput(text) {
   lastCheckState = { text: text, productType: currentProductType, violations: violations };
   document.getElementById('aiResult').innerHTML = '';
   document.getElementById('aiReviewBtn').disabled = false;
-  document.getElementById('aiRigured');
-  } else {
-    label.textContent = '已内置 Key';
-    status.classList.remove('configured');
-  }
 }
 
 // 页面加载：自动演示样例文案（与截图一致）
