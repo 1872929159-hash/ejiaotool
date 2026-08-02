@@ -86,11 +86,70 @@ function escapeHtml(str) {
 function formatDocContent(text) {
   if (!text) return '';
   var escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  // Convert line breaks to <br>
-  escaped = escaped.replace(/\n/g, '<br>');
-  // Bold for lines starting with numbers or headers (lines with ：at end)
-  escaped = escaped.replace(/^([^<\n]*[：:])\n/gm, '<strong>$1</strong><br>');
-  return escaped;
+  // Detect tab-separated table rows and format as HTML table
+  var lines = escaped.split('\n');
+  var html = '';
+  var inTable = false;
+  var tableRows = [];
+  
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    // Check if line looks like a table row (has tabs or multiple spaces as delimiters)
+    if (line.indexOf('\t') !== -1 && line.split('\t').length >= 2) {
+      if (!inTable) { inTable = true; tableRows = []; }
+      tableRows.push(line.split('\t'));
+      continue;
+    } else {
+      if (inTable) {
+        // Render accumulated table
+        html += '<table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px;">';
+        tableRows.forEach(function(row, ri) {
+          html += '<tr>';
+          row.forEach(function(cell) {
+            var cellContent = cell.trim();
+            if (ri === 0) {
+              html += '<th style="border:1px solid var(--paper-300);padding:6px 10px;background:var(--paper-100);text-align:left;font-weight:600;">' + cellContent + '</th>';
+            } else {
+              html += '<td style="border:1px solid var(--paper-300);padding:6px 10px;">' + cellContent + '</td>';
+            }
+          });
+          html += '</tr>';
+        });
+        html += '</table>';
+        inTable = false;
+        tableRows = [];
+      }
+      // Regular line
+      if (line.trim() === '') {
+        html += '<br>';
+      } else if (line.trim().match(/^[一二三四五六七八九十\d]+[、\.\)]]/)) {
+        // Numbered list item
+        html += '<div style="margin:4px 0;padding-left:8px;">' + line + '</div>';
+      } else if (line.trim().match(/^[·•\-\*]/)) {
+        // Bullet point
+        html += '<div style="margin:4px 0;padding-left:12px;">' + line + '</div>';
+      } else {
+        html += '<div>' + line + '</div>';
+      }
+    }
+  }
+  // Handle remaining table
+  if (inTable && tableRows.length > 0) {
+    html += '<table style="width:100%;border-collapse:collapse;margin:8px 0;font-size:13px;">';
+    tableRows.forEach(function(row, ri) {
+      html += '<tr>';
+      row.forEach(function(cell) {
+        if (ri === 0) {
+          html += '<th style="border:1px solid var(--paper-300);padding:6px 10px;background:var(--paper-100);text-align:left;font-weight:600;">' + cell.trim() + '</th>';
+        } else {
+          html += '<td style="border:1px solid var(--paper-300);padding:6px 10px;">' + cell.trim() + '</td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</table>';
+  }
+  return html;
 }
 
 // Parse uploaded PDF file using pdf.js
