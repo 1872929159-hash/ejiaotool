@@ -1426,6 +1426,10 @@ input, textarea, select { font-family: inherit; }
   font-size: 18px;
   letter-spacing: -0.02em;
 }
+
+.chat-fab.dragging { cursor: grabbing !important; transform: none !important; transition: none !important; user-select: none; }
+.chat-fab.dragging:hover { transform: none !important; }
+
 .chat-fab:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 12px 32px rgba(47,61,69,0.45); }
 .chat-fab.logo-fab {
   background: transparent;
@@ -2519,7 +2523,7 @@ input, textarea, select { font-family: inherit; }
       </div>
       <div class="panel-body" style="padding-top:8px;">
         <div class="ai-prompt-list" id="aiPromptList"></div>
-        <a class="ai-open" onclick="toggleChat()" style="margin-top:8px;">打开对话窗口 →</a>
+        <a class="ai-open" onclick="if(!window._fabHasMoved||!_fabHasMoved()){toggleChat()}" style="margin-top:8px;">打开对话窗口 →</a>
       </div>
     </div>
 
@@ -4445,6 +4449,101 @@ document.addEventListener('paste', async function(e) {
 let chatOpen = false;
 let chatLoading = false;
 const CHAT_SYSTEM_PROMPT = '你是"胶香守正AI合规助手"，专注于电商营销合规审核。精通《广告法》《食品安全法》《药品管理法》及京东/抖音/小红书等电商平台规则。你擅长：1) 识别营销文案中的违禁/敏感词并提供替换建议；2) 解答广告宣传合规问题；3) 针对阿胶类产品的宣传规范给出专业意见。回答要简洁、专业、可落地，每条建议引用具体法条或平台规则作为依据。回答控制在200字以内，如果问题复杂可列出要点。';
+
+
+// === Floating button drag ===
+(function() {
+  var fab = null;
+  var isDragging = false;
+  var startX = 0, startY = 0;
+  var startLeft = 0, startTop = 0;
+  var hasMoved = false;
+  var DRAG_THRESHOLD = 5;
+
+  function initDrag() {
+    fab = document.getElementById('chatFab');
+    if (!fab) { setTimeout(initDrag, 200); return; }
+
+    // Restore saved position
+    try {
+      var saved = JSON.parse(localStorage.getItem('chatFabPos') || '{}');
+      if (saved.left !== undefined && saved.top !== undefined) {
+        fab.style.left = saved.left + 'px';
+        fab.style.top = saved.top + 'px';
+        fab.style.right = 'auto';
+        fab.style.bottom = 'auto';
+      }
+    } catch(e) {}
+
+    fab.addEventListener('mousedown', onDragStart);
+    fab.addEventListener('touchstart', onDragStart, { passive: false });
+  }
+
+  function onDragStart(e) {
+    var point = e.touches ? e.touches[0] : e;
+    var rect = fab.getBoundingClientRect();
+    startX = point.clientX;
+    startY = point.clientY;
+    startLeft = rect.left;
+    startTop = rect.top;
+    hasMoved = false;
+
+    document.addEventListener('mousemove', onDragMove);
+    document.addEventListener('mouseup', onDragEnd);
+    document.addEventListener('touchmove', onDragMove, { passive: false });
+    document.addEventListener('touchend', onDragEnd);
+  }
+
+  function onDragMove(e) {
+    var point = e.touches ? e.touches[0] : e;
+    var dx = point.clientX - startX;
+    var dy = point.clientY - startY;
+
+    if (Math.abs(dx) > DRAG_THRESHOLD || Math.abs(dy) > DRAG_THRESHOLD) {
+      if (!isDragging) {
+        isDragging = true;
+        fab.classList.add('dragging');
+      }
+      e.preventDefault();
+    }
+
+    if (isDragging) {
+      var newLeft = Math.max(0, Math.min(window.innerWidth - fab.offsetWidth, startLeft + dx));
+      var newTop = Math.max(0, Math.min(window.innerHeight - fab.offsetHeight, startTop + dy));
+      fab.style.left = newLeft + 'px';
+      fab.style.top = newTop + 'px';
+      fab.style.right = 'auto';
+      fab.style.bottom = 'auto';
+      hasMoved = true;
+    }
+  }
+
+  function onDragEnd(e) {
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup', onDragEnd);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('touchend', onDragEnd);
+
+    if (isDragging) {
+      fab.classList.remove('dragging');
+      // Save position
+      try {
+        var rect = fab.getBoundingClientRect();
+        localStorage.setItem('chatFabPos', JSON.stringify({ left: Math.round(rect.left), top: Math.round(rect.top) }));
+      } catch(e) {}
+      isDragging = false;
+    }
+  }
+
+  // Expose hasMoved check for toggleChat
+  window._fabHasMoved = function() { return hasMoved; };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDrag);
+  } else {
+    initDrag();
+  }
+})();
 
 function toggleChat() {
   chatOpen = !chatOpen;
