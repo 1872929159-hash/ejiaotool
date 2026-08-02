@@ -82,6 +82,146 @@ function escapeHtml(str) {
   return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// Format document content preserving line breaks and basic structure
+function formatDocContent(text) {
+  if (!text) return '';
+  var escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Convert line breaks to <br>
+  escaped = escaped.replace(/\n/g, '<br>');
+  // Bold for lines starting with numbers or headers (lines with ：at end)
+  escaped = escaped.replace(/^([^<\n]*[：:])\n/gm, '<strong>$1</strong><br>');
+  return escaped;
+}
+
+// Parse uploaded PDF file using pdf.js
+async function parsePDF(file) {
+  return new Promise(function(resolve, reject) {
+    if (typeof pdfjsLib === 'undefined') {
+      reject(new Error('PDF解析库未加载'));
+      return;
+    }
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      pdfjsLib.getDocument({data: e.target.result}).promise.then(function(pdf) {
+        var totalPages = pdf.numPages;
+        var pages = [];
+        for (var i = 1; i <= Math.min(totalPages, 50); i++) {
+          pages.push(pdf.getPage(i));
+        }
+        Promise.all(pages).then(function(pageObjs) {
+          var text = '';
+          pageObjs.forEach(function(page, idx) {
+            page.getTextContent().then(function(content) {
+              var pageText = content.items.map(function(item) { return item.str; }).join(' ');
+              text += (idx > 0 ? '\n--- Page ' + (idx + 1) + ' ---\n' : '') + pageText + '\n';
+              if (idx === pageObjs.length - 1) {
+                resolve({text: text, pages: totalPages, format: 'PDF'});
+              }
+            });
+          });
+        });
+      }).catch(function(err) { reject(err); });
+    };
+    reader.onerror = function() { reject(new Error('File reading error')); };
+    reader.readAsArrayBuffer(file);
+  });
+}
+
+// Parse uploaded DOCX file using JSZip
+async function parseDOCX(file) {
+  if (typeof JSZip === 'undefined') {
+    throw new Error('JSZip库未加载');
+  }
+  var zip = await JSZip.loadAsync(file);
+  var docXml = zip.file('word/document.xml');
+  if (!docXml) throw new Error('Invalid DOCX: no word/document.xml');
+  var xml = await docXml.async('string');
+  // Extract text from XML paragraphs
+  var text = xml
+    .replace(/<w:p[^>]*>/g, '\n')
+    .replace(/<w:tab[^>]*>/g, '\t')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+  return {text: text, format: 'DOCX'};
+}
+
+// Parse uploaded Excel file using SheetJS
+async function parseExcel(file) {
+  if (typeof XLSX === 'undefined') {
+    throw new Error('SheetJS库未加载');
+  }
+  var data = await file.arrayBuffer();
+  var wb = XLSX.read(data, {type: 'array'});
+  var text = '';
+  wb.SheetNames.forEach(function(sheetName) {
+    var sheet = wb.Sheets[sheetName];
+    var csv = XLSX.utils.sheet_to_csv(sheet);
+    text += '\n=== Sheet: ' + sheetName + ' ===\n' + csv + '\n';
+  });
+  return {text: text, format: 'Excel', sheets: wb.SheetNames.length};
+}
+
+// Handle literature file upload
+async function handleLitFileUpload(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  var ext = file.name.split('.').pop().toLowerCase();
+  var loader = document.createElement('div');
+  loader.id = 'litLoader';
+  loader.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.75);color:#fff;padding:20px 32px;border-radius:12px;z-index:10000;display:flex;align-items:center;gap:12px;font-size:14px';
+  loader.innerHTML = '<span style="display:inline-block;width:16px;height:16px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite"></span>正在解析' + ext.toUpperCase() + '文件...';
+  document.body.appendChild(loader);
+  
+  try {
+    var result;
+    if (ext === 'pdf') {
+      result = await parsePDF(file);
+    } else if (ext === 'docx' || ext === 'doc') {
+      result = await parseDOCX(file);
+    } else if (ext === 'xlsx' || ext === 'xls' || ext === 'csv') {
+      result = await parseExcel(file);
+    } else {
+      // Plain text file
+      var text = await file.text();
+      result = {text: text, format: ext.toUpperCase()};
+    }
+    
+    document.getElementById('litLoader') && document.getElementById('litLoader').remove();
+    
+    // Display parsed content in detail view
+    var html = '<div class="lit-detail-body">' +
+      '<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;">' +
+      '<span class="lit-icon" style="font-size:38px;">📄</span>' +
+      '<div style="flex:1;"><div class="lit-detail-title">' + escapeHtml(file.name) + '</div>' +
+      '<span class="lit-type" style="display:inline-block;font-size:12px;padding:3px 10px;background:var(--paper-200);color:var(--ink-500);border-radius:4px;">' + result.format + '</span>' +
+      '</div></div>' +
+      '<div class="lit-detail-meta">' +
+      '<span>📄 格式: ' + result.format + '</span>' +
+      '<span>💾 大小: ' + Math.round(file.size / 1024) + 'KB</span>' +
+      (result.pages ? '<span>📃 页数: ' + result.pages + '</span>' : '') +
+      (result.sheets ? '<span>✔️ 表数: ' + result.sheets + '</span>' : '') +
+      '</div>' +
+      '<div class="lit-section-title">核心内容</div>' +
+      '<div class="lit-content-box">' + formatDocContent(result.text) + '</div>' +
+      '</div>';
+    document.getElementById('litDetailContent').innerHTML = html;
+    document.getElementById('litListView').style.display = 'none';
+    document.getElementById('litDetailView').style.display = 'block';
+    document.getElementById('litBreadcrumb').textContent = '上传文件';
+  } catch(err) {
+    document.getElementById('litLoader') && document.getElementById('litLoader').remove();
+    showToast('解析失败: ' + err.message);
+  }
+  event.target.value = '';
+}
+
+
+
 /**
  * 清洗 AI 模型输出的文本，移除可能导致显示异常的字符：
  * - 控制字符（保留 \n \r \t）
@@ -2211,7 +2351,7 @@ function showLitDetail(idx) {
     '<div class="lit-section-title">文档摘要</div>' +
     '<div class="lit-summary">' + escapeHtml(d.summary || '暂无摘要') + '</div>' +
     '<div class="lit-section-title">核心内容</div>' +
-    '<div class="lit-content-box">' + escapeHtml(d.content || '该文档暂无可显示内容，请到原始位置打开。') + '</div>' +
+    '<div class="lit-content-box">' + formatDocContent(d.content || '该文档暂无可显示内容，请到原始位置打开。') + '</div>' +
     '</div>';
   document.getElementById('litDetailContent').innerHTML = html;
   document.getElementById('litListView').style.display = 'none';
