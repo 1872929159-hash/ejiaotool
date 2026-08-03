@@ -720,7 +720,7 @@ function buildAiUserPrompt(text, typeName, violations, platformName) {
       const legal = (v.legalBasis && v.legalBasis.length > 0)
         ? v.legalBasis.map(l => `《${l.law_name}》${l.article || ''}`).join('；')
         : '无';
-      var caVal = Array.isArray(v.compliant_alternatives) ? v.compliant_alternatives : (v.compliant_alternatives && v.compliant_alternatives[currentProductType] ? v.compliant_alternatives[currentProductType] : (v.compliant_alternatives && v.compliant_alternatives.regular_food ? v.compliant_alternatives.regular_food : (v.alternatives || []))); const alts = (caVal && caVal.length > 0) ? caVal.join('、') : '无';
+      var caVal = Array.isArray(v.compliant_alternatives) ? v.compliant_alternatives : (v.compliant_alternatives && v.compliant_alternatives[currentProductType] ? v.compliant_alternatives[currentProductType] : (v.compliant_alternatives && v.compliant_alternatives.regular_food ? v.compliant_alternatives.regular_food : (v.compliant_alternatives || []))); const alts = (caVal && caVal.length > 0) ? caVal.join('、') : '无';
       return `${i + 1}. 命中词："${v.word}" | 等级：${v.riskLevel} | 法规依据：${legal} | 建议替换：${alts}`;
     }).join('\n');
   }
@@ -1105,7 +1105,7 @@ function renderNewUI(text, violations, matchedRanges) {
       const legal = (v.legalBasis && v.legalBasis.length > 0)
         ? '<div class="risk-detail"><span class="risk-detail-label">违规依据</span>' + escapeHtml(sanitizeAiText(v.legalBasis[0].law_name)) + (v.legalBasis[0].article ? ' ' + escapeHtml(v.legalBasis[0].article) : '') + '：' + escapeHtml(v.legalBasis[0].content || '') + '</div>'
         : '';
-      const alts = (altArr && altArr.length > 0)
+      var caVal = Array.isArray(v.compliant_alternatives) ? v.compliant_alternatives : (v.compliant_alternatives && v.compliant_alternatives[currentProductType] ? v.compliant_alternatives[currentProductType] : (v.compliant_alternatives && v.compliant_alternatives.regular_food ? v.compliant_alternatives.regular_food : [])); const alts = (caVal && caVal.length > 0)
         ? '<div class="risk-suggest" onclick="copyText(\'' + String((Array.isArray(v.compliant_alternatives) ? (v.compliant_alternatives[0] || "") : (v.compliant_alternatives && v.compliant_alternatives[currentProductType] ? v.compliant_alternatives[currentProductType][0] : (v.compliant_alternatives && v.compliant_alternatives.regular_food ? v.compliant_alternatives.regular_food[0] : ""))) || "").replace(/'/g, "\\'") + '\')">建议替换：<strong>' + escapeHtml((Array.isArray(v.compliant_alternatives) ? (v.compliant_alternatives[0] || "") : (v.compliant_alternatives && v.compliant_alternatives[currentProductType] ? v.compliant_alternatives[currentProductType][0] : (v.compliant_alternatives && v.compliant_alternatives.regular_food ? v.compliant_alternatives.regular_food[0] : ""))) || "") + '</strong></div>'
         : (lvl === 'L1' ? '<div class="risk-suggest">建议直接删除该词</div>' : '');
       const desc = v.description ? escapeHtml(v.description) : '';
@@ -1457,7 +1457,7 @@ function runCheckFromInput(text) {
 
 // 页面加载：自动演示样例文案（与截图一致）
 (function autoLoadDemo() {
-  var cb = document.getElementById(checkBtn); if (cb) cb.disabled = false;
+  var cb = document.getElementById("checkBtn"); if (cb) cb.disabled = false;
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadDemoOnReady);
   } else {
