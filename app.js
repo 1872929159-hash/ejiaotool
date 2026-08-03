@@ -1330,7 +1330,7 @@ function handleFileUpload(event) {
     reader.onload = function(e) {
       var text = e.target.result;
       document.getElementById('inputText').value = text;
-      document.getElementById('charCount').textContent = text.length + ' 字';
+      document.getElementById('charCount').textContent = text.substring(0, 10000).length + ' 字';
       recordRecentUpload(file.name, formatSize(file.size), 'doc', text);
       showToast('已导入 TXT 文件（' + file.name + '），开始检测…');
       if (!currentProductType) currentProductType = 'regular_food';
@@ -1371,7 +1371,7 @@ function handleFileUpload(event) {
       }
       var text = lines.join('\n');
       if (!text || text.trim().length === 0) {
-        showToast('DOCX 中未找到文字内容');
+        var dl2 = document.getElementById('docxLoader'); if (dl2) dl2.remove(); showToast('DOCX 中未找到文字内容');
         event.target.value = '';
         return;
       }
