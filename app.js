@@ -1457,6 +1457,7 @@ function runCheckFromInput(text) {
 
 // 页面加载：自动演示样例文案（与截图一致）
 (function autoLoadDemo() {
+  var cb = document.getElementById(checkBtn); if (cb) cb.disabled = false;
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadDemoOnReady);
   } else {
